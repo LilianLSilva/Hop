@@ -1,0 +1,270 @@
+
+openapi: 3.0.1
+info:
+  title: Inventario para Vehiculos y naves.
+  description: Haciendo uso de SWAPI, se extiende la funcionalidad agregando una nueva propiedad count en los endpoints.
+  version: 1.0.0
+servers:
+- url: http://{BASE_URL}/api
+tags:
+- name: vehicles
+  description: Se obtiene la informacion de los vehiculos
+- name: starships
+  description: Se obtiene la informacion de las naves
+
+paths:
+  /vehicles:
+    get:
+      tags:
+      - vehicles
+      description: Obtiene la lista de todos los vehiculos con la nueva propiedad count al final.
+      parameters:
+        - name: search
+          in: query
+          description: Nombre del vehiculo a buscar
+          required: false
+          schema: 
+            type: string
+            example: "TIE/LN starfighter"
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /vehicles/{id}/inventory:
+    get:
+      tags:
+      - vehicles
+      description: Obtiene los atributos de un vehicle a traves de su id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id del vehicle
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+    post:
+      tags:
+      - vehicles
+      description: Establece un numero especifico en la columna count para un nuevo vehiculo en la base de datos si el vehicle_id aun no existe en la base.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id del vehiculo
+          schema: 
+            type: number
+            example: 55
+        - in: body
+          name: count
+          description: cantidad asignada para el vehiculo
+          schema: 
+            type: object
+            properties:
+              count:
+                type: integer
+                description: cantidad
+                example: 3
+      
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+    put:
+      tags:
+      - vehicles
+      description: Modifica la cantidad de la columna count para un vehiculo particular.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id del vehiculo
+          schema: 
+            type: number
+            example: 55
+        - in: body
+          name: count
+          description: cantidad asignada para el vehiculo
+          schema: 
+            type: object
+            properties:
+              count:
+                type: integer
+                description: cantidad
+                example: 3
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /vehicles/{id}/inventory/increase:
+    put:
+      tags:
+      - vehicles
+      description: Incrementa el numero especifico en la columna count para un vehiculo en la base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id del vehiculo
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /vehicles/{id}/inventory/decrease:
+    put:
+      tags:
+      - vehicles
+      description: Decrementa el numero especifico en la columna count para un vehiculo en la base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id del vehiculo
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+ 
+  /starships:
+    get:
+      tags:
+      - starships
+      description: Obtiene la lista de todos las naves con la nueva propiedad count al final.
+      parameters:
+        - name: search
+          in: path
+          description: Nombre de la nave a buscar
+          required: true
+          schema: 
+            type: string
+            example: "Death Star"
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /starships/{id}/inventory:
+    get:
+      tags:
+      - starships
+      description: Obtiene los atributos de una nave a traves de su id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id de la nave
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+    post:
+      tags:
+      - starships
+      description: Establece un numero especifico en la columna count para una nueva nave en la base de datos si el starship_id aun no existe en la base.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id de la nave
+          schema: 
+            type: number
+            example: 55
+        - in: body
+          name: count
+          description: cantidad asignada para la nave
+          schema: 
+            type: object
+            properties:
+              count:
+                type: integer
+                description: cantidad
+                example: 3
+      
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+    put:
+      tags:
+      - starships
+      description: Modifica la cantidad de la columna count para una nave particular.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id de la nave
+          schema: 
+            type: number
+            example: 55
+        - in: body
+          name: count
+          description: cantidad asignada para la nave
+          schema: 
+            type: object
+            properties:
+              count:
+                type: integer
+                description: cantidad
+                example: 3
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /starships/{id}/inventory/increase:
+    put:
+      tags:
+      - starships
+      description: Incrementa el numero especifico en la columna count para una nave en la base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id de la nave
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.
+  /starships/{id}/inventory/decrease:
+    put:
+      tags:
+      - starships
+      description: Decrementa el numero especifico en la columna count para una nave en la base de datos.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: id de la nave
+          schema: 
+            type: number
+            example: 55
+      responses:
+        200:
+          description: (OK) La informacion se obtuvo correctamente.
+        422:
+          description: (ERROR) No se pudo obtener la informacion.

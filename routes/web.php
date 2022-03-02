@@ -33,10 +33,4 @@ Route::prefix('api/starships')->group(function () {
 
 
 
-Route::get('/vehicles', [\App\Http\Controllers\VehiclesController::class, 'index']);
-Route::get('/vehicle', [\App\Http\Controllers\VehiclesController::class, 'getVehicle']);
-Route::get('/starships', [\App\Http\Controllers\StarshipsController::class, 'index']);
-
-
-
 
