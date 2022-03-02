@@ -3,7 +3,7 @@
 Se amplian las Api de SWAPI (SWAPI proporciona información sobre el universo de “Star
 Wars”) para administrar el inventario de naves espaciales y vehículos agregando la propiedad count.
 
-##Requisitos del servicio
+## Requisitos del servicio
 Esta aplicación esta basada laravel ^8.75. Consulte las instrucciones de instalación de Laravel para obtener más información.
 
 Apache 2.4, PHP 7.3, MySQL 8, Composer 2.2.6.
